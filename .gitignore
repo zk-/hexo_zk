@@ -37,6 +37,5 @@ jspm_packages
 .node_repl_history
 
 # hexo
-themes
 public
 .deploy_git
