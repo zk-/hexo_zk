@@ -123,8 +123,10 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
-  #LinkLabel: Link
+social:
+  GitHub: https://github.com/zk-
+  Twitter: https://twitter.com/jackfredzk
+  Zhihu: https://www.zhihu.com/people/zhou-kang-46-86
 
 
 # Social Links Icons
@@ -136,9 +138,9 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
-  GitHub: https://github.com/zk-
-  # Twitter: twitter
-  # Weibo: weibo
+  GitHub: github
+  Twitter: twitter
+  Zhihu: quote-left
 
 
 # Sidebar Avatar
