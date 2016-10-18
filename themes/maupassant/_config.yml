@@ -14,13 +14,13 @@ busuanzi: true ## If you want to use Busuanzi page views please set the value to
 widgets_on_small_screens: false ## Set to true to enable widgets on small screens.
 
 menu:
-  - page: home
+  - page: 主页
     directory: .
     icon: fa-home
-  - page: archive
+  - page: 归档
     directory: archives/
     icon: fa-archive
-  - page: about
+  - page: 关于
     directory: about/
     icon: fa-user
   - page: rss
@@ -36,12 +36,12 @@ widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts
   - links
 
 links:
-  - title: site-name1
-    url: http://www.example1.com/
-  - title: site-name2
-    url: http://www.example2.com/
-  - title: site-name3
-    url: http://www.example3.com/
+  - title: 我的Github
+    url: https://github.com/zk-
+  - title: 我的知乎
+    url: https://www.zhihu.com/people/zhou-kang-46-86
+  - title: 我的邮箱
+    url: mailto:jackfredzk@gmail.com
 
 timeline:
   - num: 1
