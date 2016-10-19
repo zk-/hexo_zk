@@ -1,7 +1,6 @@
 .DS_Store
 .idea/
 *.log
-*.iml
 node_modules/
 
 # Ignore unused verdors' files
