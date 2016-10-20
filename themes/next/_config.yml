@@ -283,9 +283,9 @@ duoshuo_share: true
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
   ua_enable: true
-  admin_enable: false
-  user_id: 0
-  admin_nickname: Jackfred
+  admin_enable: true
+  user_id: 6342361719439885000
+  admin_nickname: 作者
 
 
 # Facebook SDK Support.
