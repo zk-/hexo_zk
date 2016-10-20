@@ -243,7 +243,7 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: b3de569bd7de0e2a0f7fdae181ff03da
 
 # Duoshuo ShortName
 #duoshuo_shortname:
@@ -259,7 +259,7 @@ mathjax:
 ##  type: button
 
 # Share
-#jiathis:
+jiathis: true
 # Warning: JiaThis does not support https.
 #add_this_id:
 
@@ -410,6 +410,11 @@ vendors:
   # See: http://fontawesome.io/
   fontawesome:
 
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Assets
 css: css
