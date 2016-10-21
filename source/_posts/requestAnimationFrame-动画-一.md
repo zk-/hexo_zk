@@ -60,13 +60,11 @@ ball.style.top = beginHeight; //设置好小球的初始值
 requestAnimationFrame(function() {
 	ball.style.top = (parseFloat(ball.style.top) - speed) +'px';
 	speed = speed - a;
-	if (parseFloat(ball.style.top) < 500) {
-		requestAnimationFrame(arguments.callee)
-	}else{ //小球回落地面的时候,重置高度和速度
+	if (parseFloat(ball.style.top) >= 500) { //小球回落地面的时候,重置高度和速度
 		ball.style.top = beginHeight;
 		speed = beginSpeed;
-		requestAnimationFrame(arguments.callee)
 	}
+	requestAnimationFrame(arguments.callee)
 })
 ```
 [点击这里预览效果](https://codepen.io/jackfred/pen/PGXWPw)
