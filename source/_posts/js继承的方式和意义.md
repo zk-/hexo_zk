@@ -94,6 +94,7 @@ function Parent() {
 }
 function Child() {
 	var parent = Parent.bind(this); 	//将执行环境绑定到Child来
+	parent();
 	this.age = 10;
 }
 var child = new Child;
