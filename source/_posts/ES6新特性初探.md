@@ -241,3 +241,5 @@ export default {
 // other.js
 import {greeting, name, version} from './Message';
 ```
+# 迭代器
+迭代器是一个大概念，等会写。。
