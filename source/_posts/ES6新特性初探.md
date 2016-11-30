@@ -51,6 +51,14 @@ console.log(a, b)  //输出结果1 2
 解构赋值还提供了一种提取属性的赋值方法
 ```
 var pt = {x: 123, y: 444};
-    var {x, y} = pt;
-    console.log(x, y); // 123 444
+var {x, y} = pt;
+console.log(x, y); // 123 444
+```
+结果很明白，有的同学可能有疑问，如果我不想用xy这样和对象名属性一样的变量名怎么办，简单，在后面加上冒号就可以了
+```
+var pt = {x: 123, y: 444};
+var {x:myvalue, y} = pt;
+console.log(y); // 444
+console.log(x); // undefined
+console.log(myvalue); // 123
 ```
