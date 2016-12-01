@@ -154,6 +154,14 @@ var abc = (a, b, ...args) => {
 abc(1, 2)  //3 []
 abc(1, 2, 3, 4)  //3 [3, 4]
 ```
+# 模版
+说模版实际上es6给定义的模版功能比较弱，模版文本用 __`__ 围起来，这个标点就是键盘左上方esc键下面的那个键，动态的文本内容用 __${}__ 表示，所以基本用法如下所示
+```
+var name = 'zk';
+var templateString = `my name is ${name}, and I know 1 + 1 = ${1 + 1}`
+console.log(templateString)  //my name is zk, and I know 1 + 1 = 2
+```
+在${}中我们可以放入变量也可以放入表达式，但是 templateString 在定义的时候就已经被计算出字符串并赋值给了它，所以templateString这样的变量在生成的时候就只能是固定的字符串格式。
 # class类
 __ladys and 乡亲们，你们盼望已久的面向对象终于来啦！__
 __ladys and 乡亲们，你们盼望已久的面向对象终于来啦！__
@@ -162,6 +170,7 @@ js面向对象编程说了辣么多年，网上的相关文章也是辣么多，
 ![突然消沉](/images/emotions/trxc.jpg)
 不管了，最起码写写代码的体验上提升了很多。
 > 有对js对象继承不太理解的同学，可以看看这篇我的文章__[js继承的方式和意义](https://zk-.github.io/2016/10/26/js继承的方式和意义/)__
+
 上代码
 ```
 class Parent{
@@ -242,4 +251,4 @@ export default {
 import {greeting, name, version} from './Message';
 ```
 # 迭代器
-迭代器是一个大概念，等会写。。
+这是一个大内容，下一篇开始说这个概念吧。。。
