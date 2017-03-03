@@ -69,7 +69,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://git.coding.net/jackfred/jackfred.coding.me.git
-  # repo: https://github.com/zk-/zk-.github.io.git
+  # repo: https://git.coding.net/jackfred/jackfred.coding.me.git
+  repo: https://github.com/zk-/zk-.github.io.git
   branch: master
   message: Site updated :{{ now('YYYY-MM-DD HH:mm:ss') }}
