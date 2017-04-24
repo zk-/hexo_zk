@@ -246,7 +246,7 @@ mathjax:
 baidu_analytics: 4cb295888c3e51a23fd2946c9a6ed312
 
 # Duoshuo ShortName
-duoshuo_shortname: jackfred
+# duoshuo_shortname: jackfred
 
 # Disqus
 # disqus_shortname: jackfred
@@ -264,7 +264,7 @@ duoshuo_shortname: jackfred
 #add_this_id:
 
 # Share
-duoshuo_share: true
+# duoshuo_share: true
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
@@ -281,11 +281,11 @@ duoshuo_share: true
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
-duoshuo_info:
-  ua_enable: true
-  admin_enable: true
-  user_id: 6342361719439885000
-  admin_nickname: 作者
+# duoshuo_info:
+#   ua_enable: true
+#   admin_enable: true
+#   user_id: 6342361719439885000
+#   admin_nickname: 作者
 
 
 # Facebook SDK Support.
