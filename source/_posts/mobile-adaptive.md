@@ -9,7 +9,7 @@ tags: [移动端]
 <!-- more -->
 # 引入问题
 首先我们先看这么一段代码
-```javascript
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -50,7 +50,7 @@ DPR的全程是设备像素缩放比(device PixelRatio)。
 # 如何控制浏览器缩放？
 可以说手机厂商自作聪明的作法(至少我是这么认为的)给很多前端开发者带来了麻烦，因为手机各自的分辨率不同，默认宽度不同，同样的页面在不同的手机上显示可能就会错位，如果用百分比做度量单位，就无法解决元素高度(高度的百分比是父元素的宽度的比例)还有边框宽度和元素定位等问题。
 在这里我们可以通过meta标签的viewport来控制页面缩放。
-```javascript
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -79,14 +79,14 @@ DPR的全程是设备像素缩放比(device PixelRatio)。
 如图所示，我们在meta头设置了viewport的值为"width=640"，这样手机的默认宽度就定成了640px，元素正好覆盖了全部页面。![iphone5](/images/mobile-adaptive/mobile-iPhone3.png)
 可是还有缺陷，就是浏览器还是会自动缩放。
 这时候我们在meta表现中加入这行代码
-```javascript
+```html
 <meta name="viewport" content="width=640,maximum-scale=1, minimum-scale=1,initial-scale=1,user-scalable=no">
 ```
 在这里scale的意思是缩放，maximum-scale和minimum-scale是最大缩放和最小缩放倍数，initial-scale为初始缩放倍数，user-scalable代表用户是否可以缩放。
 此时页面效果变成了下面这样![iphone5](/images/mobile-adaptive/mobile-iPhone4.gif)
 这是因为禁止了页面缩放，而iPhone5的屏幕像素大小只有320，所以页面是屏幕的2倍，且不可缩放。
 如果还是需要达到我们之前满屏的目的，则需要改动viewport的width值和元素的宽度值。
-```javascript
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -115,7 +115,83 @@ DPR的全程是设备像素缩放比(device PixelRatio)。
 这样，页面就可以满屏显示了。
 ## 不同手机下显示问题
 通过测试我们发现，经过我们的设置黄色方块在不同的手机分辨率下保持了一样的大小，但是有一个小问题，那就是在不管页面内的元素的大小和多少的情况下，如果viewport的width设置一个固定的值，比如320，那么屏幕逻辑像素宽度小于320的手机总是可以左右滑动的，在一般情况下这些不符合我们的预期，所以我们需要给width设置一个特殊值
-```javascript
+```html
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 ```
 这样，页面的默认宽度就确定为手机逻辑像素宽度了。
+# 什么是rem
+问题说到现在，似乎还没有解决，我们虽然搞定了手机的缩放问题，但是仍然无法做到让黄色方块在各个手机的分辨率下满屏显示，px在是个精确的度量单位，我们更需要一种按照手机分辨率，按比例缩放的单位！
+而这就是rem存在的意义，rem与我们平常所见的em单位很像，实际上多出来的这个r就是response的意思
+rem就是相对于页面根元素字体大小的度量单位，也就是说如果
+```css
+html {
+	font-size:16px;
+}
+```
+那么1rem = 16px，2rem = 2x16px，就是这么简单。
+根据这个简单的特性，我们可以通过js先算出当前手机的宽度，然后通过一个事先约定好的比例公式算出的值给html的font-size赋值。这样rem的值就是一个响应式的值了
+这样的代码有很多，在这里我给出一段参考代码
+```javascript
+;(function (doc, win) {
+    var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+            };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+
+})(document, window);
+```
+这一段代码中是将iPhone6为底稿，所有的元素的像素宽度÷20，得到的值就是元素的rem值
+# 彻底解决问题
+根据前面的知识点，我们来终结之前的满屏问题，因为上述代码是已iPhone6(375x667)为底稿的，所以如果要满屏的话，黄色方块的宽应该设置为375÷20=18.75rem，高设置为667÷20=33.35rem。
+所以最终代码是这样的
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Test01</title>
+<style>
+*{margin: 0;padding: 0}
+	.pic{
+		width: 18.75rem;
+		height: 33.35rem;
+		background-color: #FFE872;
+		color: white;
+		font-size: 50px;
+		text-align: center;
+		line-height: 568px;
+		font-family: cursive; 
+	}
+</style>
+</head>
+<body>
+	<div class="pic"> Yellow </div>
+<script type="text/javascript">
+	;(function (doc, win) {
+	    var docEl = doc.documentElement,
+	            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+	            recalc = function () {
+	                var clientWidth = docEl.clientWidth;
+	                if (!clientWidth) return;
+	                docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+	            };
+
+	    if (!doc.addEventListener) return;
+	    win.addEventListener(resizeEvt, recalc, false);
+	    doc.addEventListener('DOMContentLoaded', recalc, false);
+
+	})(document, window);
+</script>
+</body>
+</html>
+```
+效果图如下
+![iphone5](/images/mobile-adaptive/mobile-iPhone5.gif)
