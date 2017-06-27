@@ -39,7 +39,7 @@ js是一个基于对象的语言，没有类的概念，但是我们可以通过
 原型链呢就是一个对象，你调用他的方法，比如对象A，你调用A.sayName()，如果A有sayName这个方法，则直接调用，如果没有，则通过A是原型链向上查找，如果原型链上有这个方法，则调用，没有就继续查找，如果找不到，则会返回一个Uncaught TypeError错误或者undefined。
 如果对象和原型链上都有这个方法，则现有的方法会覆盖原型链上的方法。
 举个例子
-```
+```javascript
 function Parent() {}
 Parent.prototype.sayHello = function() {
 	console.log('hello parent')
@@ -51,7 +51,7 @@ var child = new Child;
 child.sayHello()	//输出hello parent
 ```
 我们看到child调用sayHello成功了，调用的是Parent的方法，我们再看一下覆盖的情况
-```
+```javascript
 function Parent() {}
 Parent.prototype.sayHello = function() {
 	console.log('hello parent')
@@ -71,7 +71,7 @@ child.constructor.prototype.sayHello()	//输出hello parent
 js函数可以被当作构造器使用，通过返回的对象完成构造
 如果没有指定返回一个对象，默认返回的是this
 举个例子
-```
+```javascript
 function Parent() {
 	this.name = 'parent'
 }
@@ -88,7 +88,7 @@ console.log(anotherparent.name) 	//输出hahaha
 ```
 而所谓构造器继承，就是把需要继承的对象在构造过程中，调用被继承的对象的构造方法来处理这个继承对象需要构造的目标
 让我们来实现一个构造器继承
-```
+```javascript
 function Parent() {
 	this.name = 'parent'
 }
@@ -102,7 +102,7 @@ console.log(child.name) 	//输出parent
 console.log(child.age) 		//输出10
 ```
 是不是很简单？其实这一段的代码和下面这段代码是一样的
-```
+```javascript
 function Child() {
 	this.name = 'parent';
 	this.age = 10;
@@ -113,7 +113,7 @@ console.log(child.age)
 ```
 这就是构造器继承，实际上这个方法和上面提到的网上的方法的123方法是同一种，换汤不换药，原理都是通过构造器实现继承
 可以看看网上给的例子
-```
+```javascript
 //1.使用对象冒充实现继承
 function Parent(firstname)  
 {  
@@ -204,7 +204,7 @@ child.saySomeThing();
 
 ## 原型链继承的意义以及优缺点
 我们来看这样的一段代码
-```
+```javascript
 function Parent() {}
 Parent.prototype = {
 	testArray:[1,2,3]
@@ -227,7 +227,7 @@ console.log(child2.testArray) 	//输出[1, 2, 3, 4]
 
 ## 构造器继承的意义以及优缺点
 继续看一个例子
-```
+```javascript
 function Parent() {
 	this.testArray = [1,2,3]
 }

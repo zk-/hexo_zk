@@ -195,3 +195,19 @@ html {
 ```
 效果图如下
 ![iphone5](/images/mobile-adaptive/mobile-iPhone5.gif)
+# 另一种办法——网易的移动端适配方案
+我们之前说过，如果给viewport的width设置一个固定值，则在不同分辨率下手机会进行自动缩放以适应屏幕，如果我们可以使用js计算出缩放比例，让手机屏幕正好是我们需要的固定值，然后在meta标签中加上计算出的缩放比例，这样是不是也能解决问题呢？
+网易的metahandler.js就是这样实现的，只要在页面中引入js，并在js中结尾设置好需要的宽度
+```javascript
+// 调用自适应屏幕的功能函数，位于182行
+opt.fixViewportWidth(640);
+```
+在页面加载的时候，js就能根据当前的手机智能的计算出缩放比例并加上![iphone5](/images/mobile-adaptive/mobile-iPhone6.gif)
+这是一个不错的想法，但是在使用的过程中有几个小缺陷：
+- 指定宽度需要在js中修改，应该封装出接口供使用者使用，使用者需要自己修改封装一下
+- js没有监听屏幕变化的事件，在手机横屏的时候不能满屏
+
+# 总结
+手机适配的方案有很多，大家可以选择合适自己的，有一些方案，如响应式也是不错的，关键需要看页面的布局和功能复杂度，大家理解了手机适配的原理，在以后可以更好的更快的构建适合自己的移动端网页。
+另外我集合了一点方案在我的git上，欢迎大家star和关注
+[https://github.com/zk-/mobile-response](https://github.com/zk-/mobile-response)

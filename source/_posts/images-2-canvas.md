@@ -12,7 +12,7 @@ tags: [canvas,高斯模糊,灰度处理,反色,图像处理]
 # 基础知识
 ## 导入图像
 canvas导入图像非常简单，使用canvas自带的drawImage函数即可导入
-```
+```javascript
 var image = new Image;
 image.src = './images/mm1.jpg'
 image.onload = function (){
@@ -24,7 +24,7 @@ image.onload = function (){
 ![canvas](/images/images2canvas/canvas.png)
 ## 获取图像数据
 canvas在这里也为我们提供了简便的函数getImageData，用这个函数可以获取目标区域里图像的__数组数据__。
-```
+```javascript
 canvas.width = width;
 canvas.height = height;
 ctx.drawImage(image,0,0);
@@ -36,7 +36,7 @@ console.log(imageDatas)
 ## 重绘图像
 上面我们拿到了图像数据，这时候假如我们处理好了，怎么用新数据重绘呢？
 可以直接用canvas自带的putImageData函数
-```
+```javascript
 ctx.putImageData(imageDatas,0,0)
 ```
 ## 关于图像数据
@@ -47,7 +47,7 @@ ctx.putImageData(imageDatas,0,0)
 基础只是已经了解的差不多了，现在开始简单的尝试
 # 灰度处理
 把图像做灰度处理很简单，只要把每个像素的rgb三值做成一样的就可以了，因为每个像素的rgb的值不同，所以我们可以取平均值。代码如下
-```
+```javascript
 for (var i = 0; i < imageDatas.data.length; i+=4) { //每四个元素代表一个像素
 	var ddd = (imageDatas.data[i]+imageDatas.data[i+1]+imageDatas.data[i+2])/3;
 	imageDatas.data[i]=ddd;
@@ -60,7 +60,7 @@ for (var i = 0; i < imageDatas.data.length; i+=4) { //每四个元素代表一�
 ![canvas](/images/images2canvas/canvas3.png)
 # 反色
 反色的方法是取对应rgb中相反的值，即用255减去对应的值，结果为所求的值。
-```
+```javascript
 for (var i = 0; i < imageDatas.data.length; i+=4) { //每四个元素代表一个像素
 	imageDatas.data[i]=255-imageDatas.data[i];
 	imageDatas.data[i+1]=255-imageDatas.data[i+1];

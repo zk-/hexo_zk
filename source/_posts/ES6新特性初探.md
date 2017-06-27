@@ -19,7 +19,7 @@ npm install --global babel-cli
 npm install --save-dev babel-preset-es2015
 ```
 然后在我们的项目下新建一个.babelrc文件并写入
-```
+```javascript
 {
     "presets": [
       "es2015"
@@ -38,21 +38,21 @@ npm install --save-dev babel-preset-es2015
 大家各取所需
 # 块作用声明let以及常量声明const
 废话不多说，直接先看代码
-```
+```javascript
 if (true) {
 	var a = 4
 }
 console.log(a)  //4
 ```
 我们都知道在这个例子里面，a虽然在if中声明了，但是if没有块级作用域，所以在外部也能正常访问a，这给初学者或多或少带来了理解困难，因为这是js语言的__缺陷__。在es6中，我们有了let这个块级声明，再也不用担心这类问题了
-```
+```javascript
 if (true) {
 	let a = 4
 }
 console.log(a)  //undefined
 ```
 另外我们在自己的程序中有时候希望声明一些常量，又不希望被别人更改，这时候就可以使用es6提供的const来声明变量
-```
+```javascript
 const a = 4;
 a = 5;  //error
 ```
@@ -65,22 +65,22 @@ a = 5;  //error
 英文名DESTRUCTURE（扔到有道翻译里面意思是“变性” ==！）
 实际意思是一种新的赋值模式，叫解构
 解构赋值提供了一种位赋值
-```
+```javascript
 var [a, b] = [1, 2]
 console.log(a, b)  //输出结果1 2
 ```
 大家看到了，就是对应位置的复制，这样以后如果需要交换变量值的时候就很方便，只需要一行代码就能实现
-```
+```javascript
 [a, b] = [b, a]
 ```
 解构赋值还提供了一种提取属性的赋值方法
-```
+```javascript
 var pt = {x: 123, y: 444};
 var {x, y} = pt;
 console.log(x, y); // 123 444
 ```
 结果很明白，有的同学可能有疑问，如果我不想用xy这样和对象名属性一样的变量名怎么办，简单，在后面加上冒号就可以了
-```
+```javascript
 var pt = {x: 123, y: 444};
 var {x:myvalue, y} = pt;
 console.log(y); // 444
@@ -89,14 +89,14 @@ console.log(myvalue); // 123
 ```
 # 字面量属性可计算
 这个特性很好理解，平常我们在一个对象中，读取或者写入一个动态生成的属性时，是这样做的
-```
+```javascript
 var b = 'example';
 var a = {};
 a[b + 'A'] = 4
 console.log(a['exampleA'])  //4
 ```
 在表达式中计算，现在es6加入的特性就是，在对象声明字面量的时候，就可以使用计算属性
-```
+```javascript
 var a = {
 	['example' + 'A']:6
 }
@@ -105,23 +105,23 @@ console.log(a.exampleA)  //6
 # 箭头函数 =>
 说实话这个玩意我开始用的时候真不习惯，感觉上可读性也没有多少提高，但是推出这个语法一定有他的用意，先说用法
 一般函数声明是这样的
-```
+```javascript
 function abc(){
 	// your code here
 }
 ```
 而es6的语法是这样的
-```
+```javascript
 var abc = () => {
 	//your code here
 }
 ```
 这个__()__就是声明参数的地方，剩下的就是函数解构体，其实箭头函数就是声明了一个匿名函数并复制给了abc，所以匿名函数的写法就是这样
-```
+```javascript
 setTimeout(()=>{console.log('123')},1000)
 ```
 就是样子变了一下，如果说有什么要值得注意的话，就是箭头函数创建实名函数的时候，它是一个表达式，所以没有函数声明提前的说法。
-```
+```javascript
 console.log(a) //undefined
 var a = () => {
 	// your code here
@@ -131,14 +131,14 @@ var a = () => {
 上面说过es6把一些常见的其它语言的特性拿到了es6中来，这就是其中的一个
 在函数中，我们的参数可以通过arguments来引用进来，如果一个函数要求的参数是2个，如果调用的时候传入了1个是不会报错的，只不过第二个参数默认会赋值undefined，如果传入了3个参数，也不会报错，多出来的那一个可以通过arguments[2]访问到。
 可能是es6的专家们希望js能表现的和正常的语言一样吧，在es6中，参数可以这样写
-```
+```javascript
 var abc = (...args) => {
 	console.log(args)
 }
 abc(1, 2, 3, 4)  //1 2 3 4
 ```
 前面的三个点表示任意多的参数，我们还可以给参数赋默认值
-```
+```javascript
 var abc = (a = 6) => {
 	console.log(a)
 }
@@ -146,7 +146,7 @@ abc()  //6
 abc(4)  //4
 ```
 利用这些特性我们可以很方便的取到多余的参数
-```
+```javascript
 var abc = (a, b, ...args) => {
 	console.log(a + b)
 	console.log(args)
@@ -156,7 +156,7 @@ abc(1, 2, 3, 4)  //3 [3, 4]
 ```
 # 模版
 说模版实际上es6给定义的模版功能比较弱，模版文本用 __`__ 围起来，这个标点就是键盘左上方esc键下面的那个键，动态的文本内容用 __${}__ 表示，所以基本用法如下所示
-```
+```javascript
 var name = 'zk';
 var templateString = `my name is ${name}, and I know 1 + 1 = ${1 + 1}`
 console.log(templateString)  //my name is zk, and I know 1 + 1 = 2
@@ -172,7 +172,7 @@ js面向对象编程说了辣么多年，网上的相关文章也是辣么多，
 > 有对js对象继承不太理解的同学，可以看看这篇我的文章__[js继承的方式和意义](https://zk-.github.io/2016/10/26/js继承的方式和意义/)__
 
 上代码
-```
+```javascript
 class Parent{
 	constructor(name){	//这是构造器
 		this.name = name;
@@ -186,7 +186,7 @@ console.log(parent.name)  //parent
 parent.sayHello()  //my name is parent
 ```
 继承的写法也很容易，用关键词extends，父类用super表示
-```
+```javascript
 class Parent{
 	constructor(name){	//这是构造器
 		this.name = name;
@@ -217,7 +217,7 @@ child.saySex()  //male
 ```
 # 模块module
 模块加载在es6中得到了原生支持
-```
+```javascript
 // Message.js
 export const message = 'Hello Babel';
 
@@ -226,7 +226,7 @@ import {message} from './Message';
 console.log(message); // Hello Babel
 ```
 导出可以实名导出也可以默认导出
-```
+```javascript
 // Message.js
 const greeting = 'Hello';
 const name = 'Babel';

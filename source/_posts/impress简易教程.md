@@ -16,18 +16,18 @@ tags: [impress,js框架]
 # 起步
 首先要引入impress.js文件，和普通的js引入方式是一样的
 然后在文档里加入代码
-```
+```html
 <div id="impress"></div> //id可以自定义
 ```
 然后在引入的impress文件下插入这段代码
-```
+```javascript
 impress( "root" ); //这里是你的id，如果id是impress，则这一步省略
 impress().init();
 ```
 # 插入ppt
 ## 基础
 在你指定的根div中间插入ppt类的div
-```
+```html
 <div id="impress">
 	<div id="test" class="step" data-x="0" data-y="0">
 	    test
@@ -38,7 +38,7 @@ impress().init();
 'data-x'和'data-y'这样的就是ppt的定位
 ## 2D平移
 如果我们再加入一段ppt类的div，页面就可以平移动起来了
-```
+```html
 <div id="impress">
 	<div id="test1" class="step" data-x="0" data-y="0">
 	    test1
@@ -50,14 +50,14 @@ impress().init();
 ```
 ## 缩放
 我们想加入缩放的话只要加入'data-scale'这个属性就可以了，赋值为数字，越大缩放越大
-```
+```html
 <div id="test" class="step" data-x="1600" data-y="0" data-scale="3">
     test
 </div>
 ```
 ## 2D旋转
 如果想做旋转效果的ppt，加入'data-rotate'属性，赋值范围0~360
-```
+```html
 <div id="test" class="step" data-x="1600" data-y="0" data-rotate="90" data-scale="3">
     test
 </div>
@@ -66,7 +66,7 @@ impress().init();
 加入'data-z'属性实现3D空间上的定位
 ## 3D翻滚
 可能最炫酷的效果就是这个了，需要配合3D定位，属性有两个'data-rotate-x'和'data-rotate-y'，分别实现横向和纵向翻滚。
-```
+```html
 <div id="test" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10">
     test
 </div>
@@ -75,13 +75,13 @@ impress().init();
 impress还给出了方法接口
 ## .init()
 初始化用途
-```
+```javascript
 var api = impress();
 api.init();
 ```
 ## .next()
 切换下一个ppt的功能
-```
+```javascript
 var api = impress();
 api.init();
 api.next(); //使用方法下面都一样
@@ -94,7 +94,7 @@ api.next(); //使用方法下面都一样
 impress给出了两个事件监听接口
 impress:stepenter 切入当前ppt的事件
 impress:stepleave 切出当前ppt的事件
-```
+```javascript
 var rootElement = document.getElementById( "impress" );
 rootElement.addEventListener( "impress:stepenter", function() {
 	var currentStep = document.querySelector( ".present" );

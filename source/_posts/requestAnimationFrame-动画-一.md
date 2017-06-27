@@ -21,7 +21,7 @@ tags: [js动画]
 # 使用setTimeout实现动画
 在以前我们要实现一个动画，可能要借助与js的定时函数setTimeout来实现，即类似下面的代码
 
-```
+```javascript
 setTimeout(function() {
 	// do something here
 	setTimeout(arguments.callee)
@@ -33,7 +33,7 @@ setTimeout(function() {
 # 使用requestAnimationFrame来实现动画
 在最新的标准里面，js为我们提供了一个专门用来执行动画的函数 requestAnimationFrame ，调用它可以很完美的让函数在1000/60ms时执行，当然对应的自然有cancelAnimationFrame函数来取消执行动画
 现在我们就用他来实现一个简单的让小球运动的动画:
-```
+```javascript
 var ball = document.getElementsByTagName('div')[0];
 ball.style.left = getComputedStyle(ball)['left']; //设置好小球的初始值
 requestAnimationFrame(function() {
@@ -52,7 +52,7 @@ requestAnimationFrame(function() {
 - 用requestAnimationFrame控制速度的话，在小球接触地面的时候，要将速度重置成原来的向上的速度
 
 好，以下就是成果代码:
-```
+```javascript
 var ball = document.getElementsByTagName('div')[0];
 var beginSpeed = 20，speed = 20，a = 0.5;// 设置好小球的初始速度，现速度和加速度
 var beginHeight = getComputedStyle(ball)['top']
