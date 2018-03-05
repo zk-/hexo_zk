@@ -1,5 +1,5 @@
 ---
-title: jQuery的offset的值不准的bug
+title: iframe嵌套页面滚动时jQuery的offset的值不准的bug
 date: 2018-03-05 11:25:47
 tags: bug,jquery
 ---
@@ -7,7 +7,7 @@ tags: bug,jquery
 <!-- more -->
 最近项目需求，要做一个气泡卡片的功能，因为不想引入新的库发生未知bug，于是自己手写了一个，定位通过jquery的offset方法来获取
 
-项目的布局是通过iframe嵌套方式来布局的，结果发现在部分页面下，会发生气泡定位不准的情况
+项目的布局是通过iframe嵌套方式来布局的，结果发现在部分页面下，滚动后点击元素出现气泡，会发生气泡定位不准的情况
 ![popover](/images/jqueryOffsetBug/popver.png)
 
 经过多次debugger后确定不是我的代码问题，于是查看jquery的源码
