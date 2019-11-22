@@ -40,6 +40,32 @@ if ('serviceWorker' in navigator) {
 ```
 在`sw.js`中的内容是这样的
 ```javascript
+var version = '1.0.3'; //手动更新版本
+// 安装阶段跳过等待，直接进入 active
+this.addEventListener('install', function (event) {
+    event.waitUntil(this.skipWaiting());
+});
+
+this.addEventListener('activate', function (event) {
+    event.waitUntil(
+        Promise.all([
+
+            // 更新客户端
+            this.clients.claim(),
+
+            // 清理旧版本
+            caches.keys().then(function (cacheList) {
+                return Promise.all(
+                    cacheList.map(function (cacheName) {
+                        if (cacheName !== ('cache-v-' + version)) {
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+        ])
+    );
+});
 this.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function (response) {
@@ -61,9 +87,18 @@ this.addEventListener('fetch', function (event) {
                     return httpRes;
                 }
 
+                // 不缓存loadServiceWork.js文件
+                if (httpRes.url.indexOf('loadServiceWork.js')>=0){
+                    return httpRes;
+                }
+                // 不缓存sw.js文件
+                if (httpRes.url.indexOf('sw.js')>=0){
+                    return httpRes;
+                }
+
                 // 请求成功的话，将请求缓存起来。
                 var responseClone = httpRes.clone();
-                caches.open('my-test-cache-v1').then(function (cache) {
+                caches.open('cache-v-' + version).then(function (cache) {
                     cache.put(event.request, responseClone);
                 });
 
